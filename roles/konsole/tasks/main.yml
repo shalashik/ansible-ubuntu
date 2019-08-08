@@ -1,0 +1,7 @@
+---
+
+- name: Install Konsole
+  apt: pkg=konsole state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+
+- name: Configure Konsole
+  template: src=konsolerc.j2 dest="{{ ansible_env.HOME }}/.config/yakuakerc" owner="{{ ansible_env.USER }}" group="{{ ansible_env.USER }}" mode=0600

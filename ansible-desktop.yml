@@ -4,9 +4,14 @@
   hosts: localhost
   roles:
     # Common roles
-    # - { role: locales, become: true }
-    # - { role: common, become: true }
-    # - { role: zsh, become: true }
+    - { role: locales, become: true }
+    - { role: common, become: true }
+    - { role: zsh, become: true }
+    - { role: ohmyzsh, become: true }  
+    - { role: yakuake, become: true }  
+    - { role: konsole, become: true }  
+    - { role: vim, become: true }  
+    - { role: umake, become: true }  
     # - { role: dotfiles, become: true }
     # - { role: java-openjdk, become: true }
     # - { role: phantomjs, become: true }
@@ -34,7 +39,7 @@
     # - { role: php, become: true }
     # - { role: php-pecl, become: true }
     # - { role: php-phar-tools, become: true }
-    # - { role: python, become: true }
+    - { role: python, become: true }
     # - { role: redis, become: true }
     # - { role: rbenv, become: true }
     # - { role: ssh, become: true }
@@ -72,6 +77,7 @@
     # - { role: notepadqq, become: true }
     # - { role: notify-osd, become: true }
     # - { role: qutebrowser, become: true }
+    - { role: pycharm, become: true } 
     # - { role: remarkable, become: true }
     # - { role: remmina, become: true }
     # - { role: ripgrep, become: true }

@@ -1,0 +1,13 @@
+- name: Install common packages
+  apt: pkg=vim state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+
+- name: Copy vimrc
+  copy:
+    src: files/vimrc
+    dest: '{{ item.home }}/.vimrc'
+    owner: '{{ item.user }}'
+    mode: '0644'
+  with_items: 
+    - { user: '{{  ansible_env.USER }}', home: '{{  ansible_env.HOME }}' }
+    - { user: root, home: '/root' }
+

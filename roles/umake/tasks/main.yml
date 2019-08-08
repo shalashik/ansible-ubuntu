@@ -1,0 +1,9 @@
+---
+- name: add umake repo
+  apt_repository:
+    repo: ppa:ubuntu-desktop/ubuntu-make
+    state: present
+
+- name: Install umake 
+  apt: pkg=ubuntu-make state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+
