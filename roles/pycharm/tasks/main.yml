@@ -1,10 +1,17 @@
 ---
 
-- name: create directory
-  file:
-    path: /home/struchkov/.local/share/umake/ide/pycharm
-    state: directory
-    mode: '0755'
+# - name: create directory
+#  file:
+#    path: /home/struchkov/.local/ide/pycharm
+#    state: directory
+#    mode: '0755'
 
-- name: Install pycharm
-  command: 'umake ide pycharm /home/{{ ansible_env.USER }}/.local/share/umake/ide/pycharm'
+#- name: Download pycharm
+#  get_url:
+#    url: https://download.jetbrains.com/python/pycharm-professional-2019.2.tar.gz
+#    dest: /home/struchkov/.local/ide/pycharm
+#    checksum: "sha256:https://download.jetbrains.com/python/pycharm-professional-2019.2.tar.gz.sha256"
+
+- name: install PyCharm
+  become: true
+  command: 'snap install pycharm-professional'

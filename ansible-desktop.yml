@@ -11,7 +11,7 @@
     - { role: yakuake, become: true }  
     - { role: konsole, become: true }  
     - { role: vim, become: true }  
-    - { role: umake, become: true }  
+    # - { role: umake, become: true }  
     # - { role: dotfiles, become: true }
     # - { role: java-openjdk, become: true }
     # - { role: phantomjs, become: true }
