@@ -77,7 +77,6 @@
     # - { role: notepadqq, become: true }
     # - { role: notify-osd, become: true }
     # - { role: qutebrowser, become: true }
-    - { role: pycharm, become: true } 
     # - { role: remarkable, become: true }
     # - { role: remmina, become: true }
     # - { role: ripgrep, become: true }
@@ -101,6 +100,7 @@
     # - { role: workrave, become: true }
     # - { role: xfce-dockbarx, become: true }
     # - { role: xmind, become: true }
+    - { role: snap, become: true } 
     # bspwm
     # - { role: sxhkd, become: true }
     # - { role: bspwm, become: true }

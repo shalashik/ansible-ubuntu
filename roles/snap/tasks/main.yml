@@ -1,0 +1,7 @@
+---
+
+- name: install PyCharm
+  snap:
+    name: "{{ item }}"
+    classic: yes
+  with_items: "{{ snap_applications }}"

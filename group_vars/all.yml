@@ -12,3 +12,9 @@ desktop_autostart:
     - onboard-autostart.desktop
     - orca-autostart.desktop
     - vino-server.desktop
+snap_applications:
+  - pycharm
+  - postman  
+  - intellij-idea-ultimate  
+  - go  
+  - goland  
