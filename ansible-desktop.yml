@@ -11,28 +11,10 @@
     - { role: yakuake, become: true }  
     - { role: konsole, become: true }  
     - { role: vim, become: true }  
-    # - { role: umake, become: true }  
     # - { role: dotfiles, become: true }
-    # - { role: java-openjdk, become: true }
-    # - { role: phantomjs, become: true }
-    # - { role: projects-installer }
+    - { role: java-openjdk, become: true }
     # Server roles
-    # - { role: apache2, become: true }
-    # - { role: apache2-php, become: true }
-    # - { role: beanstalkd, become: true }
-    # - { role: blackfire, become: true }
-    # - { role: composer, become: true }
-    # - { role: docker, become: true }
-    # - { role: elasticsearch, become: true }
-    # - { role: exim, become: true }
-    # - { role: fail2ban, become: true }
-    # - { role: gvm, become: true }
-    # - { role: hhvm, become: true }
-    # - { role: mailcatcher, become: true }
-    # - { role: mailhog, become: true }
-    # - { role: memcached, become: true }
-    # - { role: mysql57, become: true }
-    # - { role: mysql56, become: true }
+    - { role: docker, become: true }
     # - { role: nginx, become: true }
     # - { role: nginx-php-fpm, become: true }
     # - { role: nodejs, become: true }
@@ -71,7 +53,6 @@
     # - { role: libreoffice, become: true }
     # - { role: maim, become: true }
     # - { role: min, become: true }
-    # - { role: mysql-workbench, become: true }
     # - { role: nautilus-plugins, become: true }
     # - { role: nemo, become: true }
     # - { role: notepadqq, become: true }

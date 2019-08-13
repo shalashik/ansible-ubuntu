@@ -13,7 +13,7 @@ desktop_autostart:
     - orca-autostart.desktop
     - vino-server.desktop
 snap_applications:
-  - pycharm
+  - pycharm-professional
   - postman  
   - intellij-idea-ultimate  
   - go  
