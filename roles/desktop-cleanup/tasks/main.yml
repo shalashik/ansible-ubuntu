@@ -2,13 +2,13 @@
 
 - name: Ensure Unity MediaScanner is removed (useless + cause high CPU peaks)
   apt: pkg={{ item }} purge=yes state=absent
-  with_items:
+  loop:
     - mediascanner2.0
     - libmediascanner-2.0-0
 
 - name: Remove Amazon and others Unity shits
   apt: pkg={{ item }} purge=yes state=absent
-  with_items:
+  loop:
     - unity-lens-shopping
     - unity-scope-video-remote
     - unity-scope-musicstores
@@ -31,10 +31,10 @@
   become: true
   become_user: "{{ ansible_env.USER }}"
   with_items:
-    - gsettings set com.canonical.unity.webapps integration-allowed false
+    # - gsettings set com.canonical.unity.webapps integration-allowed false
     - gsettings set com.canonical.Unity.Lenses disabled-scopes "['more_suggestions-amazon.scope', 'more_suggestions-u1ms.scope', 'more_suggestions-populartracks.scope', 'music-musicstore.scope', 'more_suggestions-ebay.scope', 'more_suggestions-ubuntushop.scope', 'more_suggestions-skimlinks.scope']"
-    - gsettings set com.canonical.unity.webapps preauthorized-domains "[]"
-    - gsettings set com.canonical.Unity.ApplicationsLens display-available-apps false
+    # - gsettings set com.canonical.unity.webapps preauthorized-domains "[]"
+    # - gsettings set com.canonical.Unity.ApplicationsLens display-available-apps false
 
 - name: Remove exemples shortcut
   file: path="{{ ansible_env.HOME }}/examples.desktop" force=yes state=absent

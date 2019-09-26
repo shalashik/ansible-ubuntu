@@ -14,7 +14,7 @@ autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
 # add bin in path
-export PATH=~/bin:$PATH
+export PATH=~/bin:/snap/bin:$PATH
 
 # Default editor
 export VISUAL='vim'

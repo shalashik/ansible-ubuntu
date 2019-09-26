@@ -1,0 +1,57 @@
+---
+- name: "install required installation tools"
+  apt:
+    state: present
+    name:
+    - "unzip"
+    - "gpg"
+
+- name: "download binary file"
+  get_url:
+    url: "{{ onepassword_mirror }}"
+    dest: "/tmp/{{ onepassword_archive }}"
+    checksum: "{{ onepassword_checksum }}"
+  register: _download
+  until: _download is succeeded
+  retries: 5
+  delay: 2
+
+- name: "ensure onepassword_library_dir is present"
+  file:
+    path: "{{ onepassword_library_dir }}"
+    state: directory
+
+- name: "unarchive binary file"
+  unarchive:
+    src: "/tmp/{{ onepassword_archive }}"
+    dest: "{{ onepassword_library_dir }}/"
+    creates: "{{ onepassword_library_dir }}/op"
+    remote_src: true
+
+- name: "verify binary signature"
+  command: "gpg {{ item }}"
+  args:
+    chdir: "{{ onepassword_library_dir }}"
+    creates: "{{ onepassword_library_dir }}/pgp"
+  with_items:
+    - "--keyserver {{ onepassword_keyserver }} --receive-keys {{ onepassword_pgp }}"
+    - "--verify op.sig op"
+
+- name: "mark signature verification complete"
+  file:
+    path: "{{ onepassword_library_dir }}/pgp"
+    state: touch
+  changed_when: false
+
+- name: "ensure onepassword_install_dir is present"
+  file:
+    path: "{{ onepassword_install_dir }}"
+    state: directory
+
+- name: "ensure onepassword_library_dir is linked"
+  file:
+    src: "{{ onepassword_library_dir }}/op"
+    dest: "{{ onepassword_install_dir }}/op"
+    state: link
+
+

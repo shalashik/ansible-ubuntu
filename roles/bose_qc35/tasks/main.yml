@@ -1,0 +1,35 @@
+---
+
+- name: Edit bluetooth main config
+  lineinfile:
+    path: /etc/bluetooth/main.conf
+    regexp: '^#ControllerMode'
+    line: 'ControllerMode = bredr'
+  become: yes
+
+- name: Enable A2DP
+  lineinfile:
+    path: /var/lib/gdm3/.config/pulse/client.conf
+    line: "{{ item }}"
+    create: yes
+  with_items:
+    - "autospawn = no"
+    - "daemon-binary = /bin/true"  
+  become: yes
+
+- name: Disable pulseaudio startup
+  file:
+    path: /var/lib/gdm3/.config/systemd/user/sockets.target.wants/pulseaudio.socket 
+    state: absent
+  become: yes  
+
+- name: set gdm owner
+  file:
+    path: /var/lib/gdm3/.config/pulse/client.conf
+    owner: gdm
+    group: gdm
+  become: yes
+
+- name: Install blueman
+  apt: pkg=blueman state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+  become: yes

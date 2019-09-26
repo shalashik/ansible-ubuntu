@@ -1,0 +1,59 @@
+---
+
+- name: Install GIT packages
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+  loop:
+    - git
+    - git-lfs
+
+- name: Set global GIT settings
+  git_config:
+    name: user.name
+    scope: global
+    value: 'd.struchkov'
+    
+
+- name: 
+  git_config:
+    name: user.email
+    scope: global
+    value: 'd.struchkov@corp.mail.ru'
+
+- name:
+  git_config:
+    name: lfs.storage 
+    scope: global
+    value: /storage/lfs_cache
+
+- name:
+  git_config:
+    name: http.sslVerify
+    scope: global
+    value: false
+
+- name:
+  git_config:
+    name: lfs.cachecredentials
+    scope: global
+    value: true
+
+- name:
+  git_config:
+    name: core.editor
+    scope: global
+    value: vim
+
+- git_config:
+    name: color.ui
+    scope: global
+    value: auto
+
+- git_config:
+    name: oh-my-zsh.hide-status
+    scope: global
+    value: true
+
+- git_config:
+    name: oh-my-zsh.hide-dirty
+    scope: global
+    value: true

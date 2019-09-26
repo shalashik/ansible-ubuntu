@@ -16,7 +16,7 @@
 
 - name: Install common packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
-  with_items:
+  loop:
     - afuse
     - build-essential
     - bzip2
@@ -27,7 +27,6 @@
     - ftp-ssl
     - gawk
     - gcc
-    - git
     - grep
     - gzip
     - htop
@@ -35,6 +34,7 @@
     - iotop
     - less
     - lftp
+    - lvm2
     - make
     - nfs-common
     - nmap

@@ -2,12 +2,9 @@
 
 - name: Install common desktop packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
-  with_items:
+  loop:
     - bleachbit
-    - easytag # audio files metadata management
     - byzanz # screen recording
-    - geany
-    - libnotify-bin
     - inotify-tools
     - meld # Diff / merge tool
     - cifs-utils
@@ -15,10 +12,8 @@
     - pinta # light paint.net equivalent
     - rhythmbox
     - rxvt-unicode-256color
-    - sox # to play sounds
     - tilda # lighter than guake
     - ubuntu-restricted-extras # MP3, Microsoft fonts, Flash plugin, LAME and DVD playback
-    - unetbootin # create bootable USB drives
     - vlc
     - wmctrl # to control windows
     - xclip # to manipulate the clipboard
@@ -26,7 +21,7 @@
 
 - name: Install common desktop packages if Ubuntu 16.04
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
-  with_items:
+  loop:
     - fonts-hack-ttf
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
 

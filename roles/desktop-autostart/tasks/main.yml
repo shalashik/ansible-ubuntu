@@ -4,7 +4,7 @@
   lineinfile:
     dest: "{{ item }}"
     regexp: '^NoDisplay='
-    line: 'NoDisplay=false'
+    line: 'NoDisplay='
     state: present
   with_fileglob:
     - /etc/xdg/autostart/*

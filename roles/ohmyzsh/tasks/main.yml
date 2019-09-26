@@ -28,6 +28,17 @@
     - '/home/{{ ansible_env.USER }}'
     - '/root'
 
+- name: Copy default ZSH config for user root
+  copy: 
+    src: "kinda-fishy.zsh-theme" 
+    dest: "{{ item.home }}/.oh-my-zsh/themes/kinda-fishy.zsh-theme" 
+    owner: "root" 
+    group: "root" 
+    force: yes
+  with_items:
+    - { user: '{{  ansible_env.USER }}', home: '{{  ansible_env.HOME }}' }
+    - { user: root, home: '/root' }
+
 - name: write .zshrc for users
   become: yes
   become_user: '{{ item.user }}'
