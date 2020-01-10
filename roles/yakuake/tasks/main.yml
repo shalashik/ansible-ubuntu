@@ -3,5 +3,15 @@
 - name: Install Yakuake
   apt: pkg=yakuake state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
 
+- name: Copy Breeze light Minimal Theme
+  git:
+    repo: https://github.com/ovv/yakuake-breeze-light-minimal.git
+    dest: /usr/share/yakuake/skins/breeze-light-minimal 
+
+- name: Copy Sierra Breeze Mini Theme
+  unarchive:
+    src: SierraBreezeMini.tar.gz
+    dest: /usr/share/yakuake/skins/sierra_breeze_mini
+
 - name: Configure Yakuake
   template: src=yakuakerc.j2 dest="{{ ansible_env.HOME }}/.config/yakuakerc" owner="{{ ansible_env.USER }}" group="{{ ansible_env.USER }}" mode=0600 

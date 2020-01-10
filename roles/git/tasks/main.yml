@@ -39,6 +39,30 @@
 
 - name:
   git_config:
+    name: filter.lfs.clean
+    scope: global
+    value: git-lfs clean %f
+
+- name:
+  git_config:
+    name: filter.lfs.smudge
+    scope: global
+    value: git-lfs smudge %f
+
+- name:
+  git_config:
+    name: filter.lfs.process
+    scope: global
+    value: git-lfs filter-process
+
+- name:
+  git_config:
+    name: filter.lfs.required
+    scope: global
+    value: true
+
+- name:
+  git_config:
     name: core.editor
     scope: global
     value: vim

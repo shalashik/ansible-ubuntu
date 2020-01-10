@@ -2,3 +2,6 @@
 
 - name: Install Thunderbird
   apt: pkg=thunderbird state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+
+- name: Set Thunderbird as default client
+  template: src=emaildefaults.j2 dest="{{ ansible_env.HOME }}/.config/emaildefaults" owner="{{ ansible_env.USER }}" group="{{ ansible_env.USER }}" mode=0600
