@@ -8,6 +8,11 @@
     repo: https://github.com/ovv/yakuake-breeze-light-minimal.git
     dest: /usr/share/yakuake/skins/breeze-light-minimal 
 
+- name: Create theme dir
+  file:
+    path: /usr/share/yakuake/skins/sierra_breeze_mini
+    state: directory
+
 - name: Copy Sierra Breeze Mini Theme
   unarchive:
     src: SierraBreezeMini.tar.gz

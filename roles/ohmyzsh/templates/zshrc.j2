@@ -1,5 +1,7 @@
 {{ ansible_managed | comment }}
 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
 {% set oh_my_zsh = item.oh_my_zsh|default({}) %}
 
 # Path to your oh-my-zsh installation.
