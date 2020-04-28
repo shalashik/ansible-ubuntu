@@ -1,0 +1,31 @@
+---
+- name: Configure the Salt APT key
+  apt_key: 
+    url: https://repo.saltstack.com/py3/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub
+    state: present
+  become: yes
+
+- name: Add the Salt source to the APT source list
+  apt_repository:
+    repo: deb http://repo.saltstack.com/py3/ubuntu/18.04/amd64/latest bionic main
+    state: present
+
+- name: Install salt-minion
+  apt: name={{item}} state=present
+  become: yes
+  with_items:
+   - python-systemd
+   - salt-common
+   - salt-minion
+
+- name: Configure salt-minion
+  template: src=minion.j2 dest=/etc/salt/minion
+
+- name: Configure salt-minion hostname
+  template: src=minion_id.j2 dest=/etc/salt/minion_id
+
+- name: Create pki directory
+  file: path=/etc/salt/pki/minion/ state=directory
+
+- name: Restart salt-minion
+  service: name=salt-minion state=restarted

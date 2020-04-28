@@ -32,8 +32,8 @@
   copy: 
     src: "kinda-fishy.zsh-theme" 
     dest: "{{ item.home }}/.oh-my-zsh/themes/kinda-fishy.zsh-theme" 
-    owner: "root" 
-    group: "root" 
+    owner: '{{ item.user }}' 
+    group: '{{ item.user }}' 
     force: yes
   with_items:
     - { user: '{{  ansible_env.USER }}', home: '{{  ansible_env.HOME }}' }

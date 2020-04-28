@@ -1,0 +1,13 @@
+- name: Install common software
+  import_playbook: ansible-common.yml
+
+
+- name: Ubuntu salt-master
+  hosts: salt-master
+  roles: 
+    - { role: salt-master, become: true } 
+
+- name: Ubuntu salt-minion
+  hosts: salt-minion
+  roles:
+    - { role: salt-minion, become: true }

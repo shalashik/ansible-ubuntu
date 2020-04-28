@@ -6,6 +6,7 @@
     src: files/vimrc
     dest: '{{ item.home }}/.vimrc'
     owner: '{{ item.user }}'
+    group: '{{ item.user }}'
     mode: '0644'
   with_items: 
     - { user: '{{  ansible_env.USER }}', home: '{{  ansible_env.HOME }}' }

@@ -1,0 +1,17 @@
+---
+
+- name: Ubuntu desktop environment playbook
+  hosts: common 
+  roles:
+    # Common roles
+    - { role: locales, become: true }
+    - { role: common, become: true }
+    - { role: git }
+    - { role: zsh, become: true }
+    - { role: ohmyzsh, become: true }  
+    - { role: vim, become: true }  
+    # - { role: dotfiles, become: true }
+    - { role: java-openjdk, become: true }
+    # Server roles
+    - { role: docker, become: true }
+    - { role: python, become: true }

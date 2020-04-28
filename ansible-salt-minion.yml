@@ -1,0 +1,5 @@
+- name: Ubuntu desktop environment playbook
+  hosts: salt-master
+  include: ansible-common.yml
+  roles: 
+    

@@ -1,0 +1,24 @@
+- name: Configure the Salt APT key
+  apt_key: url="https://repo.saltstack.com/py3/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub" state=present
+  become: yes
+
+- name: Add the Salt source to the APT source list
+  apt_repository: 
+    repo: deb http://repo.saltstack.com/py3/ubuntu/18.04/amd64/latest bionic main
+    state: present
+
+- name: Install salt-master
+  apt: name={{item}} state=present
+  become: yes
+  with_items:
+   - salt-common
+   - salt-master
+
+- name: Configure salt-master
+  template: src=master.j2 dest=/etc/salt/master
+
+- name: Create pki directory
+  file: path=/etc/salt/pki/master/minions state=directory
+
+- name: Restart salt-master
+  service: name=salt-master state=restarted

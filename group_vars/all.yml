@@ -8,10 +8,7 @@ desktop_autostart:
   add:
     - { name: Tilda , exec: /usr/bin/tilda }
   remove:
-    # - deja-dup-monitor.desktop
-    # - onboard-autostart.desktop
     - orca-autostart.desktop
-      # - vino-server.desktop
 snap_applications:
   - pycharm-professional
   - postman  

@@ -1,3 +1,17 @@
 [local]
 localhost       ansible_connection=local
 
+
+[common]
+mcsprometheus       ansible_connection=ssh
+mcsmaster           ansible_connection=ssh
+mcsprometheustest   ansible_connection=ssh
+mcsprometheusdocker ansible_connection=ssh
+
+[salt-master]
+mcsmaster           ansible_connection=ssh
+
+[salt-minion]
+mcsprometheus       ansible_connection=ssh
+mcsprometheustest   ansible_connection=ssh
+
