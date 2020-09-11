@@ -3,5 +3,4 @@
 - name: Ubuntu desktop environment playbook
   hosts: localhost
   roles:
-    - { role: zsh, become: true }
-    - { role: ohmyzsh, become: true }  
+    - { role: jetbrains, become: true }

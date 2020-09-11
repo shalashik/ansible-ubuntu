@@ -1,7 +1,7 @@
 ---
 
-- name: Add rofi repository
-  apt_repository: repo="ppa:jasonpleau/rofi" state=present
+#- name: Add rofi repository
+#  apt_repository: repo="ppa:jasonpleau/rofi" state=present
 
 - name: Install rofi
   apt: name=rofi state=latest update_cache=yes cache_valid_time={{ aptcachetime }}

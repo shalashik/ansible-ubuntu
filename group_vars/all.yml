@@ -6,9 +6,11 @@ locale: "ru_RU.utf8"
 timezone: "Europe/Moscow"
 desktop_autostart:
   add:
-    - { name: Tilda , exec: /usr/bin/tilda }
+    - { name: dispad , exec: /usr/local/bin/dispad }
+    - { name: yakuake, exec: /usr/bin/yakuake }  
+    - { name: xbindkeys, exec: /usr/bin/xbindkeys_autostart }  
+    - { name: plank, exec: /usr/bin/plank }  
   remove:
-    - orca-autostart.desktop
 snap_applications:
   - pycharm-professional
   - postman  

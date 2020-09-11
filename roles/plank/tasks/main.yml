@@ -1,0 +1,5 @@
+---
+
+ - name: Install plank
+   apt: pkg=plank state=latest cache_valid_time={{ aptcachetime }}
+

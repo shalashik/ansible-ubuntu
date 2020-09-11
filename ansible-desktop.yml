@@ -29,17 +29,19 @@
     - { role: filezilla, become: true }
     - { role: firefox, become: true }
     - { role: geary, become: true }
+    - { role: gestures, become: true }  
     - { role: indicator-sysmonitor, become: true }
     - { role: maim, become: true }
     - { role: min, become: true }
     - { role: notepadqq, become: true }
-    - { role: remarkable, become: true }
+    # - { role: remarkable, become: true }
     - { role: remmina, become: true }
     - { role: ripgrep, become: true }
     - { role: rofi, become: true }
-    - { role: shutter, become: true }
+    - { role: plank, become: true }  
+    - { role: touchegg, become: true }  
     - { role: thunderbird, become: true }
-    - { role: ultra-flat-icons, become: true }
+    # - { role: ultra-flat-icons, become: true }
     - { role: virtualbox, become: true }
     - { role: snap, become: true } 
     # bspwm

@@ -5,4 +5,4 @@
   loop:
     - python
     - python-dev
-    - python-pip
+    - python3-pip

@@ -1,0 +1,7 @@
+---
+
+- name: Shortcuts
+  template: src=xfce4-keyboard-shortcuts.xml.j2 dest=/home/shalashik/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+
+- name: Layouts
+  template: src=keyboard-layout.xml.j2 dest=/home/shalashik/.config/xfce4/xfconf/xfce-perchannel-xml/keyboard-layout.xml

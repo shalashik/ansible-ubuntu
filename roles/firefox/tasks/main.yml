@@ -2,3 +2,13 @@
 
 - name: Install Firefox
   apt: pkg=firefox state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+
+- name: 
+  lineinfile:
+    path: /etc/profile.d/use-xinput2.sh
+    regexp: '^MOZ_USE_XINPUT2='
+    line: MOZ_USE_XINPUT2=1
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'

@@ -29,10 +29,10 @@
     force: no
   with_items: "{{ desktop_autostart.remove }}"
 
-- name: Disable startup applications
-  lineinfile:
-    dest: "{{ ansible_env.HOME }}/.config/autostart/{{ item }}"
-    regexp: '^X-GNOME-Autostart-enabled='
-    line: 'X-GNOME-Autostart-enabled=false'
-    state: present
-  with_items: "{{ desktop_autostart.remove }}"
+  #- name: Disable startup applications
+  #lineinfile:
+  #   dest: "{{ ansible_env.HOME }}/.config/autostart/{{ item }}"
+  #  regexp: '^X-GNOME-Autostart-enabled='
+  #  line: 'X-GNOME-Autostart-enabled=false'
+  #  state: present
+  #with_items: "{{ desktop_autostart.remove }}"

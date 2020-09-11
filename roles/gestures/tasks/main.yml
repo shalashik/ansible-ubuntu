@@ -1,0 +1,76 @@
+---
+
+- name: Install mtrack dependencies
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+  become: yes
+  loop:
+    - build-essential 
+    - pkg-config 
+    - libmtdev-dev 
+    - libconfuse-dev 
+    - libxi-dev 
+    - mtdev-tools 
+    - xbindkeys
+    - xdotool 
+    - xserver-xorg-dev 
+    - xutils-dev
+
+- name: get mtrack source
+  git: repo=https://github.com/p2rkw/xf86-input-mtrack.git dest={{ ansible_env.HOME }}/.ansible/repos/mtrack update=no accept_hostkey=yes
+  register: mtrack_git
+
+- name: Running configure for mtrack
+  command: 
+    cmd: "{{ item }}"
+    chdir: "{{ ansible_env.HOME }}/.ansible/repos/mtrack"
+  with_items:
+    - "./configure --with-xorg-module-dir=/usr/lib/xorg/modules"
+  changed_when: mtrack_git.changed
+
+- name: Running make for mtrack
+  command: 
+    cmd: make
+    chdir: "{{ ansible_env.HOME }}/.ansible/repos/mtrack"
+  become: yes  
+  changed_when: mtrack_git.changed
+
+- name: Running make install for mtrack
+  command:
+    cmd: make install
+    chdir: "{{ ansible_env.HOME }}/.ansible/repos/mtrack"
+  become: yes  
+  changed_when: mtrack_git.changed  
+  
+- name: Configure mtrack
+  template: src=mtrack.conf.j2 dest=/usr/share/X11/xorg.conf.d/90-mtrack.conf
+
+- name: adding existing user '{{ user }}' to group sudo
+  user:
+    name: shalashik
+    groups: input
+    append: yes
+
+
+- name: get dispad source
+  git: repo=https://github.com/BlueDragonX/dispad.git dest={{ ansible_env.HOME }}/.ansible/repos/dispad update=no accept_hostkey=yes
+  register: dispad_git
+
+- name: Running configure for dispad
+  command:
+    cmd: ./configure
+    chdir: "{{ ansible_env.HOME }}/.ansible/repos/dispad"
+  changed_when: dispad_git.changed
+
+- name: Running make for dispad
+  command:
+    cmd: make
+    chdir: "{{ ansible_env.HOME }}/.ansible/repos/dispad"
+  become: yes
+  changed_when: dispad_git.changed
+
+- name: Running make install for mtrack
+  command:
+    cmd: make install
+    chdir: "{{ ansible_env.HOME }}/.ansible/repos/dispad"
+  become: yes
+  changed_when: dispad_git.changed

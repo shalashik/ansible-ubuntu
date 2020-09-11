@@ -23,12 +23,12 @@
     state: absent
   become: yes  
 
-- name: set gdm owner
-  file:
-    path: /var/lib/gdm3/.config/pulse/client.conf
-    owner: gdm
-    group: gdm
-  become: yes
+#- name: set gdm owner
+#  file:
+#    path: /var/lib/gdm3/.config/pulse/client.conf
+#    owner: gdm
+#    group: gdm
+#  become: yes
 
 - name: Install blueman
   apt: pkg=blueman state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
