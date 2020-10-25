@@ -1,0 +1,46 @@
+---
+
+- name: Install fusuma dependencies
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
+  become: yes
+  loop:
+   - libinput-tools
+   - ruby
+   - xdotool  
+
+- name: Install fusuma
+  gem:
+    name: fusuma
+    state: present
+
+- name: Create config directory
+  file:
+    path: '{{ item.home }}/.config/fusuma/'
+    state: directory
+    owner: '{{ item.user }}'
+    mode: '0755'
+  with_items:
+    - { user: '{{  ansible_env.USER }}', home: '{{  ansible_env.HOME }}' }
+    - { user: root, home: '/root' }
+  
+    
+- name: Config file
+  become: yes
+  become_user: '{{ item.user }}'
+  template:
+    src: config.yml.j2
+    dest: '{{ item.home }}/.config/fusuma/config.yml'
+    mode: 'u=rw,go=r'
+  with_items:
+    - { user: '{{  ansible_env.USER }}', home: '{{  ansible_env.HOME }}' }
+    - { user: root, home: '/root' }
+
+- name: adding existing user '{{ user }}' to group sudo
+  user:
+    name: '{{ item }}'
+    groups: input
+    append: yes
+  with_items:
+    - '{{ ansible_env.USER}}'
+    - root  
+

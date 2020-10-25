@@ -10,13 +10,13 @@
     - cifs-utils
     - mpv
     - pinta # light paint.net equivalent
+    - plasma-workspace-wayland    
     - rhythmbox
     - rxvt-unicode-256color
     - tilda # lighter than guake
     - ubuntu-restricted-extras # MP3, Microsoft fonts, Flash plugin, LAME and DVD playback
     - vlc
     - wmctrl # to control windows
-    - xclip # to manipulate the clipboard
     - xdotool # to control windows
 
 - name: Install common desktop packages if Ubuntu 16.04

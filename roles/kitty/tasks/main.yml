@@ -1,0 +1,25 @@
+---
+- name: Install Remmina
+  apt: pkg=kitty state=present cache_valid_time={{ aptcachetime }}
+
+- name: kitty's aliases
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bash_aliases"
+    line: "{{ item }}"
+    create: yes
+  with_items:
+    - 'alias icat="kitty +kitten icat"'
+    - 'alias ssh="kitty +kitten ssh"'
+    - 'alias copy="kitty +kitten clipboard"'  
+
+- name: bash autocomplete
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: "{{ item }}"
+    create: yes
+  with_items:
+    - 'source <(kitty + complete setup bash)'
+      
+
+- name: Kitty config
+  template: src=kitty.conf.j2 dest="{{ ansible_env.HOME }}/.config/kitty/kitty.conf"

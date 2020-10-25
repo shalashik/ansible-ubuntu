@@ -8,8 +8,8 @@
     - { role: locales, become: true }
     - { role: common, become: true }
     - { role: git }
-    - { role: zsh, become: true }
-    - { role: ohmyzsh, become: true }  
+      # - { role: zsh, become: true }
+      # - { role: ohmyzsh, become: true }  
     - { role: yakuake, become: true }  
     - { role: konsole, become: true }  
     - { role: vim, become: true }  
@@ -29,8 +29,10 @@
     - { role: filezilla, become: true }
     - { role: firefox, become: true }
     - { role: geary, become: true }
-    - { role: gestures, become: true }  
+    - { role: fusuma, become: true }
+    # - { role: gestures, become: true }  
     - { role: indicator-sysmonitor, become: true }
+    - { role: kitty, become: true }
     - { role: maim, become: true }
     - { role: min, become: true }
     - { role: notepadqq, become: true }

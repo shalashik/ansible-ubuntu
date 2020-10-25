@@ -1,4 +1,18 @@
 ---
+- name: Add git and git-lfs repo keys
+  apt_key:
+    url: https://packagecloud.io/github/git-lfs/gpgkey
+    state: present
+  become: yes
+
+- name: Add git and git-lfs repos
+  apt_repository: 
+    repo: "{{ item }}"
+    state: present
+  become: yes  
+  with_items:
+    - ppa:git-core/ppa 
+    - deb [arch=amd64] https://packagecloud.io/github/git-lfs/ubuntu {{ ansible_distribution_release }} main
 
 - name: Install GIT packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time={{ aptcachetime }}
@@ -7,78 +21,15 @@
     - git
     - git-lfs
 
-- name: Set global GIT settings
-  git_config:
-    name: user.name
-    scope: global
-    value: 'd.struchkov'
-    
+- name: git config
+  template: src=gitconfig.j2 dest="{{ ansible_env.HOME }}/.gitconfig"
 
-- name: 
-  git_config:
-    name: user.email
-    scope: global
-    value: 'd.struchkov@corp.mail.ru'
-
-- name:
-  git_config:
-    name: lfs.storage 
-    scope: global
-    value: /storage/lfs_cache
-
-- name:
-  git_config:
-    name: http.sslVerify
-    scope: global
-    value: false
-
-- name:
-  git_config:
-    name: lfs.cachecredentials
-    scope: global
-    value: true
-
-- name:
-  git_config:
-    name: filter.lfs.clean
-    scope: global
-    value: git-lfs clean %f
-
-- name:
-  git_config:
-    name: filter.lfs.smudge
-    scope: global
-    value: git-lfs smudge %f
-
-- name:
-  git_config:
-    name: filter.lfs.process
-    scope: global
-    value: git-lfs filter-process
-
-- name:
-  git_config:
-    name: filter.lfs.required
-    scope: global
-    value: true
-
-- name:
-  git_config:
-    name: core.editor
-    scope: global
-    value: vim
-
-- git_config:
-    name: color.ui
-    scope: global
-    value: auto
-
-- git_config:
-    name: oh-my-zsh.hide-status
-    scope: global
-    value: true
-
-- git_config:
-    name: oh-my-zsh.hide-dirty
-    scope: global
-    value: true
+- name: kitty's aliases
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bash_aliases"
+    line: "{{ item }}"
+    create: yes
+  with_items:
+    - 'alias ga="git add "'
+    - 'alias gca="git commit --amend --no-edit "' 
+    - "alias giturl=\"git remote get-url origin | sed -e 's/:/\//'  | sed -e 's/git\@/https\:\/\//' | sed -e 's/.git$/\/commit\//' | awk '{cmd=\\\"git log --pretty=format:'%H' -n 1\\\"; cmd | getline revision; close(cmd); commit_url=\$1revision; print commit_url}'| kitty +kitten clipboard\"" 

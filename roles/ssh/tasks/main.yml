@@ -11,3 +11,22 @@
 
 - name: "Ensure SSH is {{ ssh.start | ternary('started','stopped') }}"
   service: name=ssh state={{ ssh.start | ternary('restarted','stopped') }} enabled={{ ssh.service_enabled }}
+
+
+- name: Create SSH Agent systemd config
+  template: src=ssh-agent.service.j2 dest=/etc/systemd/user/ssh-agent.service
+
+- name: Create SSH Agent symbolic link 
+  file:
+    src: "/etc/systemd/user/ssh-agent.service"
+    dest: "/etc/systemd/user/default.target.wants/ssh-agent.service"
+    state: link
+  notify:
+    - Reload systemd config
+
+- name: SSH_AUTH_SOCK
+  lineinfile:
+    dest: "/etc/bash.bashrc"
+    regexp: "^export SSH_AUTH_SOCK="
+    line: "export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent"
+

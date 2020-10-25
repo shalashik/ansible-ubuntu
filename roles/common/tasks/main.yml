@@ -32,10 +32,12 @@
     - htop
     - iftop
     - iotop
+    - jq 
     - less
     - lftp
     - lvm2
     - make
+    - net-tools
     - nfs-common
     - nmap
     - openssl
@@ -46,6 +48,7 @@
     - ranger
     - rar
     - rsync
+    - s3cmd
     - smbclient
     - software-properties-common
     - sshfs

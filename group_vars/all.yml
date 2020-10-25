@@ -6,10 +6,15 @@ locale: "ru_RU.utf8"
 timezone: "Europe/Moscow"
 desktop_autostart:
   add:
-    - { name: dispad , exec: /usr/local/bin/dispad }
     - { name: yakuake, exec: /usr/bin/yakuake }  
-    - { name: xbindkeys, exec: /usr/bin/xbindkeys_autostart }  
     - { name: plank, exec: /usr/bin/plank }  
+    - { name: fusuma, exec: /usr/local/bin/fusuma }  
+    - { name: telegram-desktop, exec: /snap/bin/telegram-desktop }  
+    - { name: thunderbird, exec: /usr/bin/thunderbird }  
+    - { name: myteam, exec: /snap/bin/myteam }  
+    - { name: kitty, exec: /home/shalashik/.local/bin/kitty }  
+    - { name: slack, exec: /snap/bin/slack }
+  
   remove:
 snap_applications:
   - pycharm-professional
@@ -17,6 +22,6 @@ snap_applications:
   - intellij-idea-ultimate  
   - go  
   - goland  
-  - skype
   - slack  
   - telegram-desktop
+  - zoom-client 
